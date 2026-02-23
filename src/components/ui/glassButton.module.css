@@ -1,0 +1,62 @@
+.glassButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 24px;
+    border: 1.5px solid #2bff00;
+    border-radius: 8px;
+    background: linear-gradient(135deg,
+            rgba(43, 255, 0, 0.08) 0%,
+            rgba(15, 88, 0, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #2bff00;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+/* brilho interno superior */
+.glassButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(43, 255, 0, 0.6), transparent);
+    pointer-events: none;
+}
+
+/* glow hover */
+.glassButton:hover {
+    background: linear-gradient(135deg,
+            rgba(43, 255, 0, 0.16) 0%,
+            rgba(15, 88, 0, 0.28) 100%);
+    box-shadow:
+        0 0 16px rgba(43, 255, 0, 0.25),
+        0 0 40px rgba(43, 255, 0, 0.1),
+        inset 0 0 12px rgba(43, 255, 0, 0.08);
+    border-color: rgba(43, 255, 0, 0.9);
+}
+
+.glassButton:active {
+    transform: scale(0.98);
+    box-shadow:
+        0 0 8px rgba(43, 255, 0, 0.3),
+        inset 0 0 16px rgba(43, 255, 0, 0.1);
+}
+
+.glassButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

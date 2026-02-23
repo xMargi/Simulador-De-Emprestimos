@@ -11,3 +11,4 @@ export interface Installment  {
     amortization: number
     outstandingBalance: number
 }
+

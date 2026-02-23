@@ -1,0 +1,135 @@
+/* ─── Remove setas do número ─────────────────────────── */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ─── Container (fieldset) ───────────────────────────── */
+.containerInput {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Reset padrão do fieldset */
+  margin: 0;
+  padding: 0;
+  border: 2px solid #0f5800;
+  border-radius: 8px;
+  min-width: 0;
+}
+
+/*
+  Legend: invisível, existe só para criar o GAP nativo do
+  fieldset no topo da borda. O gap respeita o border-radius
+  automaticamente, sem precisar de pseudo-elementos.
+*/
+.legend {
+  /* posiciona o gap: label está em left:14px, padding:0 4px
+     → gap começa em 10px do inner-left do fieldset */
+  margin-left: 10px;
+  padding: 0;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: transparent;
+  font-size: 0.8rem;
+  /* deve bater com o .label quando flutuando */
+  /* Quando não ativo: gap = 0 */
+  max-width: 0.01px;
+  transition: max-width 0.22s ease, padding 0.22s ease;
+}
+
+/* Quando o label está flutuando: expande o gap */
+.containerInput.active .legend {
+  max-width: 300px;
+  /* grande o suficiente para qualquer label */
+  padding: 0 4px;
+  /* mesmo padding do label para alinhar o gap */
+}
+
+/* ─── Input ──────────────────────────────────────────── */
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 8px 10px 14px;
+  color: #fff;
+  font-size: 1.05rem;
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+/* ─── Label flutuante ────────────────────────────────── */
+.label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  padding: 0 4px;
+  transition:
+    top 0.22s ease,
+    transform 0.22s ease,
+    font-size 0.22s ease,
+    color 0.22s ease;
+}
+
+.containerInput.active .label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: #2bff00;
+}
+
+/* ─── Ícone ──────────────────────────────────────────── */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  color: rgba(43, 255, 0, 0.6);
+  flex-shrink: 0;
+  transition: color 0.22s ease;
+}
+
+.containerInput.active .icon {
+  color: #2bff00;
+}
+
+/* ─── Estado de Erro ─────────────────────────────────── */
+.containerInput.error {
+  border-color: #ff4444;
+}
+
+
+
+.containerInput.active.error .legend {
+  max-width: 300px;
+  padding: 0 4px;
+}
+
+.containerInput.active.error .label {
+  color: #ff4444;
+}
+
+.containerInput.error .icon {
+  color: rgba(255, 68, 68, 0.7);
+}
+
+.errorMsg {
+  font-size: 0.75rem;
+  color: #ff4444;
+  padding-left: 4px;
+  margin-top: 4px;
+  min-height: 1rem;
+  display: block;
+}
